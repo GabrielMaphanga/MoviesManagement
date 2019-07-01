@@ -24,7 +24,7 @@ namespace MoviesManagement.API.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        [Route("Get/movies")]
+        [Route("Get")]
         public List<Movie> GetMovies()
         {
             return _moviesRepository.GetMovies();
@@ -46,7 +46,7 @@ namespace MoviesManagement.API.Controllers
         /// <param name="movie"></param>
 
         [HttpPost]
-        [Route("Add/movie")]
+        [Route("Add")]
         public void AddMovie([FromBody]Movie movie)
         {
             _moviesRepository.AddMovie(movie);
@@ -56,7 +56,7 @@ namespace MoviesManagement.API.Controllers
         /// </summary>
         /// <param name="movie"></param>
         [HttpPut]
-        [Route("Update/movie")]
+        [Route("Update")]
         public void UpdateMovie([FromBody]Movie movie)
         {
             _moviesRepository.UpdateMovie(movie);
