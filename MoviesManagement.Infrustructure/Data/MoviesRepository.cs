@@ -27,28 +27,24 @@ namespace MoviesManagement.Infrustructure.Data
 
         public bool AddMovie(Movie movie)
         {
-            var exitingMovie = Find(movie.Id);
-            if(exitingMovie.Name != movie.Name && exitingMovie.Category != movie.Category)
+
+
+            using (IDbConnection dbConnection = Connection)
             {
-                using (IDbConnection dbConnection = Connection)
+                string sQuery = "INSERT INTO dbo.Movie (Id,Name, Category, Rating)"
+                    + "VALUES(@Id,@Name, @Category, @Rating)";
+                dbConnection.Open();
+                int rowAffectd = dbConnection.Execute(sQuery, movie);
+                if (rowAffectd > 0)
                 {
-                    string sQuery = "INSERT INTO dbo.Movie (Id,Name, Category, Rating)"
-                        + "VALUES(@Id,@Name, @Category, @Rating)";
-                    dbConnection.Open();
-                    int rowAffectd = dbConnection.Execute(sQuery, movie);
-                    if (rowAffectd > 0)
-                    {
-                        return true;
-                    }
-
-
+                    return true;
                 }
+            }
 
-            }
-            else
-            {
-                throw new Exception("Movie exits!!!");
-            }
+
+           
+
+           
             
             return false;
         }
