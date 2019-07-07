@@ -31,8 +31,8 @@ namespace MoviesManagement.Infrustructure.Data
 
             using (IDbConnection dbConnection = Connection)
             {
-                string sQuery = "INSERT INTO dbo.Movie (Id,Name, Category, Rating)"
-                    + "VALUES(@Id,@Name, @Category, @Rating)";
+                string sQuery = "INSERT INTO dbo.Movie (Name, Category, Rating)"
+                    + "VALUES(@Name, @Category, @Rating)";
                 dbConnection.Open();
                 int rowAffectd = dbConnection.Execute(sQuery, movie);
                 if (rowAffectd > 0)
